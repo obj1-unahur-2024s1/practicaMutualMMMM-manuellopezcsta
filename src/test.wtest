@@ -1,0 +1,73 @@
+import example.*
+
+describe "Test de Viajes"{
+	const viajeCiudad = new ViajeCiudad(numAtracciones = 4)
+	const viajeTropical = new ViajeCiudadTropical(numAtracciones = 4)
+	const viajeCiudad2 = new ViajeCiudad(numAtracciones = 8)
+	const viajeTropical2 = new ViajeCiudadTropical(numAtracciones = 8)
+	const viajeTropical3 = new ViajeCiudadTropical(numAtracciones = 10)
+	
+	const viajeTrekking = new ViajeTrekking(kmSendero = 100 , diasDeSol = 130)
+	const viajeTrekking2 = new ViajeTrekking(kmSendero = 50 , diasDeSol = 240)
+	const viajeTrekking3 = new ViajeTrekking(kmSendero = 250 , diasDeSol = 130)
+	
+	const viajePlaya1 = new ViajePlaya(largoPlaya = 1000)
+	const viajePlaya2 = new ViajePlaya(largoPlaya = 2000)
+	const claseGim = new ClaseGimnasia()
+	
+	const roque = new Socio(maxActividades = 2, edad = 25, actividadesRealizadas = [viajePlaya1,viajePlaya2])
+	
+	test "Test Ciudad" {
+	assert.equals(2, viajeCiudad.cuantoDura())
+	assert.notThat(viajeCiudad.implicaEsfuerzo())
+	assert.notThat(viajeCiudad.sirveParaBroncearse())
+	}
+	
+	test "Test Tropical" {
+	assert.equals(3, viajeTropical.cuantoDura())
+	assert.notThat(viajeTropical.implicaEsfuerzo())
+	assert.that(viajeTropical.sirveParaBroncearse())
+	}
+	
+	test "Test Ciudad2" {
+	assert.equals(4, viajeCiudad2.cuantoDura())
+	assert.that(viajeCiudad2.implicaEsfuerzo())
+	assert.notThat(viajeCiudad2.sirveParaBroncearse())
+	}
+	
+	test "Test Tropical2" {
+	assert.equals(5, viajeTropical2.cuantoDura())
+	assert.that(viajeTropical2.implicaEsfuerzo())
+	assert.that(viajeTropical2.sirveParaBroncearse())
+	}
+	
+	test "Test Tropical3" {
+	assert.equals(6, viajeTropical3.cuantoDura())
+	assert.notThat(viajeTropical3.implicaEsfuerzo())
+	assert.that(viajeTropical3.sirveParaBroncearse())
+	}
+	
+	test "Test Trekking1" {
+	assert.equals(2, viajeTrekking.cuantoDura())
+	assert.that(viajeTrekking.implicaEsfuerzo())
+	assert.notThat(viajeTrekking.sirveParaBroncearse())
+	}
+	
+	test "Test Trekking2" {
+	assert.equals(1, viajeTrekking2.cuantoDura())
+	assert.notThat(viajeTrekking2.implicaEsfuerzo())
+	assert.that(viajeTrekking2.sirveParaBroncearse())
+	}
+	
+	test "Test Trekking3" {
+	assert.equals(5, viajeTrekking3.cuantoDura())
+	assert.that(viajeTrekking3.implicaEsfuerzo())
+	assert.that(viajeTrekking3.sirveParaBroncearse())
+	}
+	
+	test "Roque" {
+		assert.that(roque.adoradorDelSol())
+		assert.equals(#{viajePlaya2}, roque.actividadesEsforzadas())
+		//roque.realizoActividad(claseGim)
+	}
+}
